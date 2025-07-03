@@ -61,4 +61,7 @@ button{
     background-color:red;
     font-size: 1em;
 }
+.disable{
+    background-color:rgb(132, 129, 129);
+}
 

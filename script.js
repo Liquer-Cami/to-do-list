@@ -5,12 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const listItens = document.getElementsByTagName("ul")[0];
 
+    addItemInput.addEventListener("input", () => {
+        if (addItemInput.value) {
+            buttonAddItem.classList.remove("disable");
+            buttonAddItem.disabled = false;
+        } else {
+            buttonAddItem.classList.add("disable");
+            buttonAddItem.disabled = true;
+        }
+    });
+
     buttonAddItem.addEventListener("click", (event) => {
         event.preventDefault();
         addItem(addItemInput.value);
     });
 
-    function addItem(text){
+    function addItem(text) {
         const item = document.createElement("li");
         const input = document.createElement("input");
         input.disabled = true;
@@ -32,5 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
         item.append(input);
         item.append(div);
         listItens.append(item);
-    };
+
+        addItemInput.value = "";
+
+        buttonAddItem.disabled = true;
+        buttonAddItem.classList.add("disable");
+    }
 });
