@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonEdit.classList.add("button-edit");
         buttonDelete.classList.add("button-delete");
 
+        buttonsContainer.classList.add("buttons-container");
+
         div.append(buttonEdit);
         div.append(buttonDelete);
 
@@ -47,5 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         buttonAddItem.disabled = true;
         buttonAddItem.classList.add("disable");
+    }
+
+    const buttonDelete = document.getElementsByClassName("button-delete");
+
+    for(let button of buttonDelete){
+        button.addEventListener("click", () => {
+            button.parentNode.parentNode.remove();
+        })
     }
 });

@@ -64,4 +64,7 @@ button{
 .disable{
     background-color:rgb(132, 129, 129);
 }
-
+.buttons-container{
+    display: flex;
+    gap:5px;
+}
