@@ -36,7 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonEdit.classList.add("button-edit");
         buttonDelete.classList.add("button-delete");
 
-        buttonsContainer.classList.add("buttons-container");
+        buttonDelete.addEventListener("click", () => {
+            buttonDelete.parentNode.parentNode.remove();
+        })
+
+        div.classList.add("buttons-container");
 
         div.append(buttonEdit);
         div.append(buttonDelete);
