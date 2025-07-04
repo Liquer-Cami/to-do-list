@@ -45,8 +45,66 @@ document.addEventListener("DOMContentLoaded", () => {
         div.append(buttonEdit);
         div.append(buttonDelete);
 
+        const containerButtonsSaveCancel = document.createElement("div");
+        const buttonSave = document.createElement("button");
+        const buttonCancel = document.createElement("button");
+
+        buttonSave.innerText = "Salvar";
+        buttonCancel.innerText = "Cancelar";
+
+        buttonSave.classList.add("button-save");
+        buttonCancel.classList.add("button-cancel");
+
+        containerButtonsSaveCancel.append(buttonSave);
+        containerButtonsSaveCancel.append(buttonCancel);
+        containerButtonsSaveCancel.classList.add("buttons-container-save-cancel","buttons-hide");
+
         item.append(input);
         item.append(div);
+        item.append(containerButtonsSaveCancel);
+
+        buttonEdit.addEventListener("click", () => {
+            const input = buttonEdit.parentNode.parentNode.getElementsByTagName("input")[0];
+            input.disabled = false;
+
+            const endInput = input.value.length;
+            input.setSelectionRange(endInput, endInput);
+            input.focus();
+
+        
+            const buttonsSaveCancel = buttonEdit.parentNode.parentNode.
+            getElementsByClassName("buttons-container-save-cancel")[0];
+
+            buttonsSaveCancel.classList.remove("buttons-hide");
+            buttonEdit.parentNode.classList.add("buttons-hide");
+
+            const contentItem = input.value;
+            
+            const buttonsCancel = buttonsSaveCancel.
+            getElementsByClassName("button-cancel")[0];
+
+            buttonsCancel.addEventListener("click", () => {
+                input.value = contentItem;
+                input.disabled = true;
+
+                buttonsSaveCancel.classList.add("buttons-hide");
+                buttonEdit.parentNode.classList.remove("buttons-hide");
+                })
+        })
+
+        buttonSave.addEventListener("click", () => {
+
+            const input =
+            buttonSave.parentNode.parentNode.getElementsByTagName("input")[0];
+            input.disabled = true;
+
+            const buttonsEditDelete = buttonSave.parentNode.parentNode.
+            getElementsByClassName("buttons-container-edit-delete")[0];
+
+            buttonSave.parentNode.classList.add("buttons-hide");
+            buttonsEditDelete.classList.remove("buttons-hide");
+        })
+
         listItens.append(item);
 
         addItemInput.value = "";
