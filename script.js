@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             buttonDelete.parentNode.parentNode.remove();
         })
 
-        div.classList.add("buttons-container");
+        div.classList.add("buttons-container-edit-delete");
 
         div.append(buttonEdit);
         div.append(buttonDelete);
@@ -60,6 +60,54 @@ document.addEventListener("DOMContentLoaded", () => {
     for(let button of buttonDelete){
         button.addEventListener("click", () => {
             button.parentNode.parentNode.remove();
+        })
+    }
+
+    const buttonEdit = document.getElementsByClassName("button-edit");
+    for(let button of buttonEdit){
+        button.addEventListener("click", () => {
+            const input = button.parentNode.parentNode.getElementsByTagName("input")[0];
+            input.disabled = false;
+
+            const endInput = input.value.length;
+            input.setSelectionRange(endInput, endInput);
+            input.focus();
+
+        
+            const buttonsSaveCancel = button.parentNode.parentNode.
+            getElementsByClassName("buttons-container-save-cancel")[0];
+
+            buttonsSaveCancel.classList.remove("buttons-hide");
+            button.parentNode.classList.add("buttons-hide");
+
+            const contentItem = input.value;
+            
+            const buttonCancel = buttonsSaveCancel.
+            getElementsByClassName("button-cancel")[0];
+
+            buttonCancel.addEventListener("click", () => {
+                input.value = contentItem;
+                input.disabled = true;
+
+                buttonsSaveCancel.classList.add("buttons-hide");
+                button.parentNode.classList.remove("buttons-hide");
+            } )
+        })
+    }
+
+    const buttonSave = document.getElementsByClassName("button-save");
+    for(let button of buttonSave){
+        button.addEventListener("click", () => {
+
+            const input =
+            button.parentNode.parentNode.getElementsByTagName("input")[0];
+            input.disabled = true;
+
+            const buttonsEditDelete = button.parentNode.parentNode.
+            getElementsByClassName("buttons-container-edit-delete")[0];
+
+            button.parentNode.classList.add("buttons-hide");
+            buttonsEditDelete.classList.remove("buttons-hide");
         })
     }
 });

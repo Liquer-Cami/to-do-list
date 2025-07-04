@@ -64,7 +64,22 @@ button{
 .disable{
     background-color:rgb(132, 129, 129);
 }
-.buttons-container{
+.buttons-container-edit-delete{
     display: flex;
     gap:5px;
+}
+.button-save{
+    background-color:green;
+    font-size: 1em;
+}
+.button-cancel{
+    background-color:gray;
+    font-size: 1em;
+}
+.buttons-container-save-cancel{
+    display: flex;
+    gap: 5px;
+}
+.buttons-hide{
+    display: none !important;
 }
